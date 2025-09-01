@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -14,15 +13,18 @@ function App() {
 
   return (
     <>
-      <div className="my-30">
+      <div className="text-center text-5xl/30 font-serif">
+        <h1>Counter App</h1>
+      </div>
+      <div className="text-center my-9 text-4xl font-mono">
         <h1>
           {text} : {count}
         </h1>
       </div>
 
-      <div className="flex gap-x-48">
+      <div className="flex justify-center">
         <button
-          className="rounded shadow-xl/30 inset-shadow-xs active:shadow-none active:outline-none active:scale-96"
+          className="rounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:outline-none active:scale-96 font-mono"
           onClick={() => {
             setCount(count + 1);
             setText("Incrementing");
@@ -32,7 +34,7 @@ function App() {
         </button>
 
         <button
-          className="btn-1 rounded shadow-xl/30 inset-shadow-xs active:shadow-none active:scale-96"
+          className="rounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:scale-96 font-mono"
           onClick={() => {
             decrease();
             setText("Decrementing");
@@ -42,10 +44,16 @@ function App() {
         </button>
       </div>
 
-      <div>
-        <button onClick={() => {
-          setCount(0);
-        }}>Reset</button>
+      <div className="flex justify-center py-6">
+        <button
+          className="ounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:scale-96 font-mono"
+          onClick={() => {
+            setCount(0);
+            setText("Count");
+          }}
+        >
+          Reset
+        </button>
       </div>
     </>
   );
