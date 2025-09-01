@@ -41,6 +41,12 @@ function App() {
           Decrement
         </button>
       </div>
+
+      <div>
+        <button onClick={() => {
+          setCount(0);
+        }}>Reset</button>
+      </div>
     </>
   );
 }
