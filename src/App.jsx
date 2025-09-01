@@ -55,6 +55,11 @@ function App() {
           Reset
         </button>
       </div>
+
+      <div className="flex justify-center my-5">
+        <h1 className="text-3xl">Input Steps</h1>
+        <input className="w-80 h-10 shadow-xl/30 outline-amber-200 border-amber-700-400 mx-5" type="number" placeholder="Enter Number of steps"/>
+      </div>
     </>
   );
 }
