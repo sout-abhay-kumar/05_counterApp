@@ -6,12 +6,12 @@ function History() {
   return (
     <>
       <div className="text-center py-5">
-        <span className="text-black text-3xl font-mono font-bold hover:text-red-500">
+        <span className="text-black text-5xl font-extrabold font-mono  hover:text-red-500">
           History
         </span>
 
         <div>
-          <h1 className="text-left py-10 text-5xl font-extrabold">
+          <h1 className="text-left py-10 text-3xl font-bold ">
             History till Now...
           </h1>
         </div>
@@ -27,14 +27,16 @@ function History() {
         </div>
 
         <div>
-          {history.length > 0 ? (<button
-            className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-95 font-mono my-7 outline-amber-500 cursor-pointer"
-            onClick={() => {
-              reset();
-            }}
-          >
-            Delete History
-          </button>): null}
+          {history.length > 0 ? (
+            <button
+              className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-95 font-mono my-7 outline-amber-500 cursor-pointer"
+              onClick={() => {
+                reset();
+              }}
+            >
+              Delete History
+            </button>
+          ) : null}
         </div>
       </div>
     </>

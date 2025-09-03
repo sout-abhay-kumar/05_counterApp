@@ -1,9 +1,17 @@
 import ValueContext from "./ValueContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ValueContextProvider = ({ children }) => {
   const [count, setCount] = useState(0);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(() => {
+    const savedHistory = localStorage.getItem("history");
+    return savedHistory ? JSON.parse(savedHistory) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(history))
+  }, [history]);
+
   const [step, setStep] = useState(1);
 
   const increment = () => {
