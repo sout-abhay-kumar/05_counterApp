@@ -10,21 +10,25 @@ const ValueContextProvider = ({ children }) => {
     const newCount = count + step;
     setCount(newCount);
     setHistory([...history, newCount]);
-  }
+  };
 
   const decrement = () => {
-    const newCount = count - step;
-    setCount(newCount);
-    setHistory([...History, newCount]);
-  }
+    if (count > 0) {
+      const newCount = count - step;
+      setCount(newCount);
+      setHistory([...history, newCount]);
+    }
+  };
 
   const reset = () => {
     setCount(0);
-    setHistory();
-  }
+    setHistory([]);
+  };
 
   return (
-    <ValueContext.Provider value={{count, history, step, increment, decrement, reset}}>
+    <ValueContext.Provider
+      value={{ count, history, step, setStep, increment, decrement, reset }}
+    >
       {children}
     </ValueContext.Provider>
   );

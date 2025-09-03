@@ -1,17 +1,11 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import ValueContext from "../Context/ValueContext";
 
 function Home() {
-    const [count, setCount] = useState(0);
-    const [text, setText] = useState("Count");
-    const [step, setStep] = useState();
+  const { count, step, setStep, increment, decrement, reset } =
+    useContext(ValueContext);
+  const [text, setText] = useState("Count"); 
 
-    const decrease = () => {
-      if (count <= 0) {
-        return;
-      }
-      setCount(count - step);
-    };
   return (
     <>
       <div className="text-center text-5xl/30 font-serif">
@@ -25,9 +19,9 @@ function Home() {
 
       <div className="flex justify-center">
         <button
-          className="rounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:outline-none active:scale-96 font-mono"
+          className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-95 font-mono"
           onClick={() => {
-            setCount(count + step);
+            increment();
             setText("Incrementing");
           }}
         >
@@ -35,9 +29,9 @@ function Home() {
         </button>
 
         <button
-          className="rounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:scale-96 font-mono"
+          className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-95 font-mono"
           onClick={() => {
-            decrease();
+            decrement();
             setText("Decrementing");
           }}
         >
@@ -47,9 +41,9 @@ function Home() {
 
       <div className="flex justify-center py-6">
         <button
-          className="ounded mx-10 w-32 h-10 shadow-xl/30 inset-shadow-xs active:shadow-none active:scale-96 font-mono"
+          className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-95 font-mono"
           onClick={() => {
-            setCount(0);
+            reset();
             setText("Count");
           }}
         >
@@ -61,10 +55,8 @@ function Home() {
         <h1 className="text-3xl">Input Steps</h1>
         <input
           value={step}
-          onChange={(e) => {
-            setStep(Number(e.target.value));
-          }}
-          className="w-80 h-10 shadow-xl/30 outline-amber-200 border-amber-700-400 mx-5"
+          onChange={(e) => setStep(Number(e.target.value))}
+          className="w-80 h-10 shadow-xl/30 mx-5"
           type="number"
           placeholder="Enter Number of steps"
         />
