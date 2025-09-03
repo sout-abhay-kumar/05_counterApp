@@ -36,6 +36,7 @@ function App() {
           <Route path="/history" element={<History />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+        
       </Router>
 
      

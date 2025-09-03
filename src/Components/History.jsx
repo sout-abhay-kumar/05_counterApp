@@ -5,6 +5,8 @@ function History() {
         <span className="text-black text-3xl font-mono font-bold hover:text-red-500">
           History
         </span>
+
+        
       </div>
     </>
   );
