@@ -2,7 +2,10 @@ import ValueContext from "./ValueContext";
 import { useEffect, useState } from "react";
 
 const ValueContextProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    const savedCount = localStorage.getItem("count");
+    return savedCount ? JSON.parse(savedCount) : 0;
+  });
   const [history, setHistory] = useState(() => {
     const savedHistory = localStorage.getItem("history");
     return savedHistory ? JSON.parse(savedHistory) : [];
@@ -10,7 +13,8 @@ const ValueContextProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("history", JSON.stringify(history))
-  }, [history]);
+    localStorage.setItem("count", JSON.stringify(count))
+  }, [history], count);
 
   const [step, setStep] = useState(1);
 
