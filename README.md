@@ -15,7 +15,7 @@ A fully interactive React counter application with advanced features that go bey
 ## Technologies Used
 
 - **React** (JSX, Hooks: `useState`, `useEffect`)  
-- **CSS** for styling and animations  
+- **TailwindCSS** for styling  
 - **Browser localStorage** for persistent state  
 
 ## Getting Started
