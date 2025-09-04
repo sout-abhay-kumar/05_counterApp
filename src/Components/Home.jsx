@@ -2,10 +2,9 @@ import { useContext, useState } from "react";
 import ValueContext from "../Context/ValueContext";
 
 function Home() {
-  const { count, step, setStep, increment, decrement, reset } =
+  const { count, step, setStep, increment, decrement, reset, stopTimer, startTimer, text, setText} =
     useContext(ValueContext);
-  const [text, setText] = useState("Count"); 
-
+ 
   return (
     <>
       <div className="text-center text-5xl/30 font-serif">
@@ -60,6 +59,23 @@ function Home() {
           type="number"
           placeholder="Enter Number of steps"
         />
+      </div>
+
+      <div>
+        <button className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-75 font-mono"
+          onClick={startTimer}
+      
+        >
+          Start Timer
+        </button>
+      </div>
+
+      <div>
+        <button className="rounded mx-10 w-32 h-10 shadow-xl/30 active:scale-150 font-mono"
+          onClick={stopTimer}
+        >
+          Stop Timer
+        </button>
       </div>
     </>
   );

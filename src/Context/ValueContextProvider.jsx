@@ -11,12 +11,17 @@ const ValueContextProvider = ({ children }) => {
     return savedHistory ? JSON.parse(savedHistory) : [];
   });
 
+  const [step, setStep] = useState(1); 
+  const [text, setText] = useState("Count"); 
+
+  
   useEffect(() => {
     localStorage.setItem("history", JSON.stringify(history))
     localStorage.setItem("count", JSON.stringify(count))
   }, [history], count);
 
-  const [step, setStep] = useState(1);
+  const [isRunning, setIsRunning] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   const increment = () => {
     const newCount = count + step;
@@ -37,9 +42,32 @@ const ValueContextProvider = ({ children }) => {
     setHistory([]);
   };
 
+  const startTimer = () => {
+    if (!isRunning) {
+      const id = setInterval(() => {
+        setCount(prevCount => {
+          const newCount = prevCount + step;
+          return newCount;
+        });
+      }, 1000);
+      setIntervalId(id);
+      setIsRunning(true);
+      setText("Timer Running")
+    }
+  };
+
+  const stopTimer = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+      setIsRunning(false);
+      setText("Timer Stopped")
+    }
+  }
+
   return (
     <ValueContext.Provider
-      value={{ count, history, step, setStep, increment, decrement, reset }}
+      value={{ count, history, step, setStep, increment, decrement, reset, stopTimer, startTimer, isRunning, text, setText }}
     >
       {children}
     </ValueContext.Provider>
